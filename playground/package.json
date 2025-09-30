@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "catalog:vite",
+    "vite-plugin-inspect": "catalog:vite",
     "vue-note": "workspace: *"
   }
 }
