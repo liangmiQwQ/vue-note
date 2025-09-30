@@ -109,23 +109,24 @@ importers:
       typescript:
         specifier: catalog:cli
         version: 5.9.2
-      vite:
-        specifier: catalog:vite
-        version: 7.1.7(@types/node@24.5.2)(jiti@2.6.0)(tsx@4.20.5)(yaml@2.8.1)
       vitest:
         specifier: catalog:testing
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.5.2)(jiti@2.6.0)(tsx@4.20.5)(yaml@2.8.1)
       vitest-package-exports:
         specifier: catalog:testing
         version: 0.1.1
-      vue:
-        specifier: catalog:vue
-        version: 3.5.22(typescript@5.9.2)
       yaml:
         specifier: catalog:testing
         version: 2.8.1
 
-  packages/vue-note: {}
+  packages/vue-note:
+    devDependencies:
+      vite:
+        specifier: catalog:vite
+        version: 7.1.7(@types/node@24.5.2)(jiti@2.6.0)(tsx@4.20.5)(yaml@2.8.1)
+      vue:
+        specifier: catalog:vue
+        version: 3.5.22(typescript@5.9.2)
 
   playground:
     devDependencies:
@@ -135,6 +136,9 @@ importers:
       vite-plugin-inspect:
         specifier: catalog:vite
         version: 11.3.3(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(tsx@4.20.5)(yaml@2.8.1))
+      vue:
+        specifier: catalog:vue
+        version: 3.5.22(typescript@5.9.2)
       vue-note:
         specifier: 'workspace: *'
         version: link:../packages/vue-note

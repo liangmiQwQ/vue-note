@@ -19,5 +19,13 @@
       "types": "./dist/vite.d.mts",
       "default": "./dist/vite.mjs"
     }
+  },
+  "peerDependencies": {
+    "vite": "^7.0.0",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "vite": "catalog:vite",
+    "vue": "catalog:vue"
   }
 }
