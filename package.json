@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
+    "play": "pnpm -C playground dev",
     "lint": "eslint",
     "prepublishOnly": "nr build",
     "release": "bumpp",
@@ -27,9 +28,10 @@
     "tsdown": "catalog:cli",
     "tsx": "catalog:cli",
     "typescript": "catalog:cli",
-    "vite": "catalog:cli",
+    "vite": "catalog:vite",
     "vitest": "catalog:testing",
     "vitest-package-exports": "catalog:testing",
+    "vue": "catalog:vue",
     "yaml": "catalog:testing"
   },
   "simple-git-hooks": {

@@ -1,0 +1,10 @@
+{
+  "name": "vue-note-playground",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:vite"
+  }
+}
