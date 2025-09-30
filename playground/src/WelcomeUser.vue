@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-
+import { ref } from 'vue'
+// Set ref
+const msg = ref('Good Morning! ')
 </script>
 
 <template>
-  <div>Good Morning! </div>
+  <div>{{ msg }}</div>
 </template>
 
 <style>
