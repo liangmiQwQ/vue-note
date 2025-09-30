@@ -2,6 +2,9 @@ import type { PluginOption } from 'vite'
 
 export function VueNote(): PluginOption {
   return {
-    name: 'vue-note',
+    name: 'vue-vine',
+    transform() {
+
+    },
   }
 }
