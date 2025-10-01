@@ -1,6 +1,3 @@
-# eslint-disable pnpm/yaml-no-duplicate-catalog-item
-# eslint-disable pnpm/yaml-no-unused-catalog-item
-
 packages:
   - playground
   - docs
@@ -11,6 +8,8 @@ ignoreWorkspaceRootCheck: true
 shellEmulator: true
 
 catalogs:
+  build:
+    oxc-parser: ^0.93.0
   cli:
     '@antfu/eslint-config': ^5.4.1
     '@antfu/ni': ^26.0.1
@@ -21,12 +20,6 @@ catalogs:
     tsdown: ^0.15.4
     tsx: ^4.20.5
     typescript: ^5.9.2
-
-  inlined:
-    '@antfu/utils': ^9.2.1
-  rolldown-vite:
-    vite: npm:rolldown-vite@latest
-
   testing:
     tinyexec: ^1.0.1
     vitest: ^3.2.4
@@ -36,10 +29,13 @@ catalogs:
     '@types/node': ^24.5.2
   vite:
     '@vitejs/plugin-vue': ^6.0.1
-    vite: ^7.1.7
+    vite: npm:rolldown-vite@latest
     vite-plugin-inspect: ^11.3.3
   vue:
     vue: ^3.5.22
+  inlined:
+    '@antfu/utils': ^0.0.0
+
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks

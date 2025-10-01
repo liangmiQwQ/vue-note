@@ -1,13 +1,13 @@
 /* eslint-disable unused-imports/no-unused-vars */
-import { defineCommentComponents, defineTemplate } from 'vue-note'
+import { defineCommentComponent, defineTemplate } from 'vue-note'
 
-export default defineCommentComponents(() => {
+export default defineCommentComponent(() => {
   defineTemplate(/* @template
     <AppHome msg="Hello World" />
   */)
 })
 
-const AppHome = defineCommentComponents(() => {
+const AppHome = defineCommentComponent(() => {
   const props = defineProps<{
     msg: string
   }>()

@@ -1,12 +1,15 @@
 import type { PluginOption } from 'vite'
+import { parseQuery } from './query'
+import { transform } from './transform'
 
 export function VueNote(): PluginOption {
   return {
     name: 'vue-note',
-    transform(src, id) {
-      if (id.endsWith('.ts') && src.includes('defineCommentComponents')) {
-        return src.replace('defineCommentComponents', 'defineSomething')
-      }
+    async transform(src, id, opt) {
+      const ssr = opt?.ssr === true
+      const { filename, query } = parseQuery(id)
+
+      return transform(src, filename, query, ssr)
     },
     config(config) { // disable esbuild (oxc) to process typescript
       if (!config.esbuild) {
