@@ -9,7 +9,7 @@ export function VueNote(): PluginOption {
       const ssr = opt?.ssr === true
       const { filename, query } = parseQuery(id)
 
-      return transform(src, filename, query, ssr)
+      return transform(src, filename, this, query, ssr)
     },
     config(config) { // disable esbuild (oxc) to process typescript
       if (!config.esbuild) {
