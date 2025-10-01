@@ -6,7 +6,7 @@ export function transform(src: string, filename: string, ctx: Rollup.TransformPl
   if (query.raw)
     return
 
-  const _file = parse(src, filename, ctx)
+  const _file = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
 
   return {
     code: src,

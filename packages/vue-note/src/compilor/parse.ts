@@ -23,16 +23,18 @@ export function parse(src: string, filename: string, ctx: Rollup.TransformPlugin
 }
 
 export function getRawComponents(astResult: ParseResult, ctx: Rollup.TransformPluginContext): RawComponent[] {
+  // to parse ast, get component
   const rawComponents: RawComponent[] = []
 
   const visitor = new Visitor({
     CallExpression(decl) {
       if (decl.callee.type === 'Identifier' && decl.callee.name === 'defineCommentComponent') {
+        // for each components
         const componentFunction = decl.arguments[0]
         const isFunction = componentFunction.type === 'ArrowFunctionExpression' || componentFunction.type === 'FunctionExpression'
 
         if (isFunction && componentFunction.body?.type === 'BlockStatement') {
-          const component = componentFunction.body
+          const component = componentFunction.body // get function body as <script setup>
           const _templateIndex = component.body.findIndex(e => e.type === 'ExpressionStatement'
             && e.expression.type === 'CallExpression'
             && e.expression.callee.type === 'Identifier'
@@ -40,7 +42,7 @@ export function getRawComponents(astResult: ParseResult, ctx: Rollup.TransformPl
 
           let template: CallExpression | undefined
           if (_templateIndex !== -1) {
-            const [_templateExpression] = component.body.splice(_templateIndex, 1)
+            const [_templateExpression] = component.body.splice(_templateIndex, 1) // remove defineTemplate macros from script
             template = (_templateExpression as ExpressionStatement).expression as CallExpression
           }
 
@@ -62,9 +64,9 @@ export function getRawComponents(astResult: ParseResult, ctx: Rollup.TransformPl
 }
 
 export function getTemplate(start: number, end: number, comments: Comment[]): string {
-  const match = comments.find((comment) => {
-    return comment.type === 'Block' && comment.start > start && comment.end < end
-  })?.value.trim().match(/^@template(.*)/s)
+  const match = comments.find(comment =>
+    comment.type === 'Block' && comment.start > start && comment.end < end,
+  )?.value.trim().match(/^@template(.*)/s)
 
   return match ? match[1].trim() : ''
 }
