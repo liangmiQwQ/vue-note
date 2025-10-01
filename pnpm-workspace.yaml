@@ -10,6 +10,7 @@ shellEmulator: true
 catalogs:
   build:
     oxc-parser: ^0.93.0
+    recast: ^0.23.11
   cli:
     '@antfu/eslint-config': ^5.4.1
     '@antfu/ni': ^26.0.1

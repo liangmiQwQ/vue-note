@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "oxc-parser": "catalog:build",
+    "recast": "catalog:build",
     "vite": "catalog:vite",
     "vue": "catalog:vue"
   }
