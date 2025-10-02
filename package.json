@@ -12,13 +12,12 @@
     "prepublishOnly": "nr build",
     "release": "bumpp",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "nr build && tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@antfu/ni": "catalog:cli",
-    "@antfu/utils": "catalog:inlined",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
     "eslint": "catalog:cli",
@@ -28,10 +27,8 @@
     "tsdown": "catalog:cli",
     "tsx": "catalog:cli",
     "typescript": "catalog:cli",
-    "vite": "catalog:vite",
     "vitest": "catalog:testing",
     "vitest-package-exports": "catalog:testing",
-    "vue": "catalog:vue",
     "yaml": "catalog:testing"
   },
   "simple-git-hooks": {
