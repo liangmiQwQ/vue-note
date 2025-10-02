@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.0-alpha.3",
   "license": "MIT",
+  "homepage": "https://github.com/liangmiQwQ/vue-note#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liangmiqwq/vue-note.git"
+    "url": "git+https://github.com/liangmiQwQ/vue-note.git"
   },
-  "bugs": "https://github.com/liangmiqwq/vue-note/issues",
+  "bugs": "https://github.com/liangmiQwQ/vue-note/issues",
   "keywords": ["Vuejs"],
   "sideEffects": false,
   "exports": {
