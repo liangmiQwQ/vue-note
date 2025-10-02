@@ -155,7 +155,7 @@ importers:
         specifier: catalog:vue
         version: 3.5.22(typescript@5.9.2)
       vue-note:
-        specifier: 'workspace: *'
+        specifier: workspace:*
         version: link:../packages/vue-note
 
 packages:
