@@ -1,6 +1,5 @@
 import type { Rollup, TransformResult } from 'vite'
 import type { VueNoteQuery } from './query'
-import { rolldownVersion, transformWithEsbuild, transformWithOxc } from 'vite'
 import { parseComponents } from '../compilor/component'
 import { parse } from '../compilor/parse'
 import { resolve } from '../compilor/resolve'
@@ -13,6 +12,7 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
   const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx)
 
+  const { rolldownVersion, transformWithOxc } = await import('vite')
   if (rolldownVersion) {
     const { code } = await transformWithOxc(
       resolvedCode,
@@ -27,6 +27,7 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
     }
   }
   else {
+    const { transformWithEsbuild } = await import('vite')
     const { code } = await transformWithEsbuild(
       resolvedCode,
       filename,
