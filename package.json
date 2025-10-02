@@ -12,7 +12,7 @@
     "prepublishOnly": "nr build",
     "release": "bumpp",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "nr build && tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
