@@ -22,11 +22,13 @@
   },
   "peerDependencies": {
     "oxc-parser": "^0.93.0",
+    "oxc-walker": "^0.5.2",
     "vite": "^7.0.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "oxc-parser": "catalog:build",
+    "oxc-walker": "catalog:build",
     "recast": "catalog:build",
     "vite": "catalog:vite",
     "vue": "catalog:vue"
