@@ -4,6 +4,7 @@ import { defineCommentComponent, defineTemplate } from 'vue-note'
 export default defineCommentComponent(() => {
   defineTemplate(/* @template
     <AppHome msg="Hello World" />
+    <div>Good Morning</div>
   */)
 })
 
