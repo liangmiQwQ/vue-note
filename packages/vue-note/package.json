@@ -2,6 +2,8 @@
   "name": "vue-note",
   "type": "module",
   "version": "0.0.0-alpha.4",
+  "description": "Another style to write Vue. It's light, easy and fast!",
+  "author": "Liang Mi",
   "license": "MIT",
   "homepage": "https://github.com/liangmiQwQ/vue-note#readme",
   "repository": {
@@ -21,7 +23,12 @@
       "default": "./dist/vite.mjs"
     }
   },
-  "files": ["dist"],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "oxc-parser": "^0.93.0",
     "oxc-walker": "^0.5.2",
