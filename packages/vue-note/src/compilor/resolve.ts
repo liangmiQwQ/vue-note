@@ -32,7 +32,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
 
       // remove macro imports
       if (node.type === 'ImportDeclaration') {
-        if (node.source.value !== 'vue-note') {
+        if (!isPlaceholder(node)) {
           // other imports
           imports.push(node)
         }
@@ -47,9 +47,10 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
   return print(program).code
 }
 
-function dedupeImports(imports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {
+function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {
   const identifierMap = new Map<string, string>() // e.local.name; e.imported.name
 
+  const imports = rawImports.filter(decl => !isPlaceholder(decl))
   imports.forEach((decl) => {
     walk(decl, {
       enter(e) {
@@ -86,4 +87,8 @@ function getImported(node: ImportSpecifier | ImportDefaultSpecifier | ImportName
     // e.g. import UnoCSS from 'unocss';
     return `${parent.source.value}\\DEFAULT`
   }
+}
+
+function isPlaceholder(node: ImportDeclaration): boolean {
+  return node.source.value === 'vue-note'
 }

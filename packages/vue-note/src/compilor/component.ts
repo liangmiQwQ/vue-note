@@ -38,6 +38,7 @@ export function parseComponents(filename: string, rawComponents: RawComponent[])
 
 function generateSFC(rawComponent: RawComponent): string {
   return `<script setup lang='ts'>
+import { AppHome } from 'vue-note'
 ${rawComponent.script}
 </script>
 <template>
