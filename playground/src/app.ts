@@ -1,10 +1,12 @@
 /* eslint-disable unused-imports/no-unused-vars */
+import { ref } from 'vue'
 import { defineCommentComponent, defineTemplate } from 'vue-note'
 
 export default defineCommentComponent(() => {
+  const message = ref('Good Morning')
+
   defineTemplate(/* @template
-    <AppHome msg="Hello World" />
-    <div>Good Morning</div>
+    <div> {{ message }} </div>
   */)
 })
 
