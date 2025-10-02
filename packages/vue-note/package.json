@@ -20,6 +20,7 @@
       "default": "./dist/vite.mjs"
     }
   },
+  "files": ["dist"],
   "peerDependencies": {
     "oxc-parser": "^0.93.0",
     "oxc-walker": "^0.5.2",

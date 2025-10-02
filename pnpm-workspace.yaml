@@ -14,21 +14,21 @@ catalogs:
     recast: ^0.23.11
   cli:
     '@antfu/eslint-config': ^5.4.1
-    '@antfu/ni': ^26.0.1
+    '@antfu/ni': ^26.1.0
     bumpp: ^10.2.3
     eslint: ^9.36.0
-    lint-staged: ^16.2.0
+    lint-staged: ^16.2.3
     simple-git-hooks: ^2.13.1
-    tsdown: ^0.15.4
-    tsx: ^4.20.5
-    typescript: ^5.9.2
+    tsdown: ^0.15.6
+    tsx: ^4.20.6
+    typescript: ^5.9.3
   testing:
     tinyexec: ^1.0.1
     vitest: ^3.2.4
     vitest-package-exports: ^0.1.1
     yaml: ^2.8.1
   types:
-    '@types/node': ^24.5.2
+    '@types/node': ^24.6.2
   vite:
     '@vitejs/plugin-vue': ^6.0.1
     vite: npm:rolldown-vite@latest
