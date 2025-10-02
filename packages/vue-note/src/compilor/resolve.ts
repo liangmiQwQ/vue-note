@@ -56,12 +56,12 @@ function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPlu
       enter(e) {
         if (e.type === 'ImportSpecifier' || e.type === 'ImportDefaultSpecifier' || e.type === 'ImportNamespaceSpecifier') {
           const imported = identifierMap.get(e.local.name)
-          if (imported && imported !== getImported(e, decl)) {
+          if (imported && imported !== getImportedUniqueID(e, decl)) {
             // imported with the same identifier, but the imported things are different
             ctx.error(`${e.local.name} is a reserved keyword, please rename it.`)
           }
           else if (!imported) { // the new
-            identifierMap.set(e.local.name, getImported(e, decl))
+            identifierMap.set(e.local.name, getImportedUniqueID(e, decl))
           }
           else {
             this.remove()
@@ -74,7 +74,7 @@ function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPlu
   return imports.filter(decl => decl.specifiers && decl.specifiers.length > 0)
 }
 
-function getImported(node: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier, parent: ImportDeclaration): string {
+function getImportedUniqueID(node: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier, parent: ImportDeclaration): string {
   if (node.type === 'ImportSpecifier') {
     // e.g. import { ref } from 'vue'
     return `${parent.source.value}\\${node.imported.type === 'Identifier' ? node.imported.name : node.imported.value}`
