@@ -9,6 +9,9 @@ export function VueNote(): PluginOption {
       const ssr = opt?.ssr === true
       const { filename, query } = parseQuery(id)
 
+      if (!filename.endsWith('.ts'))
+        return
+
       return transform(src, filename, this, query, ssr)
     },
     config(config) { // disable esbuild (oxc) to process typescript
