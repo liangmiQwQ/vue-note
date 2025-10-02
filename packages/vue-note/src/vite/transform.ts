@@ -11,7 +11,7 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
 
   const fileParseResult = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
-  const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents)
+  const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx)
 
   if (rolldownVersion) {
     const { code } = await transformWithOxc(
