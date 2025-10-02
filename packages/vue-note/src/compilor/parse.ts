@@ -2,10 +2,12 @@ import type { CallExpression, Comment, ExpressionStatement, ParseResult } from '
 import type { Rollup } from 'vite'
 import { parseSync, Visitor } from 'oxc-parser'
 import { print } from 'recast'
+import { getID } from './utils/id'
 
 export interface RawComponent {
   script: string
   template: string
+  id: string
 }
 
 export interface FileParseResult {
@@ -49,6 +51,7 @@ export function getRawComponents(astResult: ParseResult, ctx: Rollup.TransformPl
           rawComponents.push({
             script: print(component).code.slice(1, -1),
             template: template ? getTemplate(template.callee.end, template.end, astResult.comments) : '',
+            id: getID(decl),
           })
         }
         else {

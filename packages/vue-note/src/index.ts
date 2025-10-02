@@ -4,4 +4,3 @@ export default {}
 
 export declare function defineCommentComponent(component: () => void): Component
 export declare function defineTemplate(): void
-export declare function defineStyle(): void
