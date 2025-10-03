@@ -1,12 +1,14 @@
-import type { ExportDefaultDeclarationKind, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program } from 'oxc-parser'
+import type { Expression, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program } from 'oxc-parser'
 import type { Rollup } from 'vite'
 import type { CompiledComponent } from './component'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
 import { print } from 'recast'
+import { getHmrCode } from './utils/hmr'
 import { getID } from './utils/id'
+import { wrapperComponent } from './utils/wrapper'
 
-export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext): string {
+export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, injectHmr: boolean): string {
   const imports: ImportDeclaration[] = []
 
   walk(program, {
@@ -15,11 +17,11 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'defineCommentComponent') {
         const _script = compiledComponents.find(e => e.id === getID(node))!
 
-        let script: ExportDefaultDeclarationKind | undefined
+        let script: Expression | undefined
 
         new Visitor({
           ExportDefaultDeclaration(decl) {
-            script = decl.declaration
+            script = decl.declaration as Expression
           },
           ImportDeclaration(decl) {
             // collect imports
@@ -27,7 +29,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           },
         }).visit(parseSync('foo.ts', _script.code).program)
 
-        this.replace(script!)
+        this.replace(wrapperComponent(script!, injectHmr ? getHmrCode() : []))
       }
 
       // remove macro imports

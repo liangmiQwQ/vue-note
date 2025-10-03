@@ -1,5 +1,4 @@
 import type { Rollup, TransformResult, ViteDevServer } from 'vite'
-import type { CompiledComponent } from '../compilor/component'
 import type { VueNoteQuery } from './query'
 import { parseComponents } from '../compilor/component'
 import { parse } from '../compilor/parse'
@@ -14,19 +13,11 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
   if (query.raw)
     return
 
+  const hmr = !ssr && opt.server && opt.server.config.server.hmr !== false && !opt.isProduction
+
   const fileParseResult = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
-
-  let resolvedComponents: CompiledComponent[]
-  // processing hmr
-  if (!ssr && opt.server && opt.server.config.server.hmr !== false && !opt.isProduction) {
-    resolvedComponents = compiledComponents.map(e => e)
-  }
-  else {
-    resolvedComponents = compiledComponents
-  }
-
-  const resolvedCode = resolve(fileParseResult.astRestult.program, resolvedComponents, ctx)
+  const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr)
 
   const { rolldownVersion, transformWithOxc } = await import('vite')
   if (rolldownVersion) {
