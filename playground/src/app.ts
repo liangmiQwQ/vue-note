@@ -26,7 +26,7 @@ export default defineCommentComponent(() => {
   const message = ref('Good Morning')
 
   defineTemplate(/* @template
-    <div> {{ message }} </div>
+    <div> {{ message }} 1</div>
     <AppHome msg="Hello World! " />
     <Counter />
   */)

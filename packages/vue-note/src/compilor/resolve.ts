@@ -43,8 +43,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           }).visit(parseSync('foo.ts', component.code.template).program)
         }
 
-        const hmrScript = hmrCache ? getComponentHmrCode(component.uniqueId, hmrCache) : []
-        this.replace(wrapperComponent(script!, [...hmrScript], template))
+        this.replace(wrapperComponent(script!, hmrCache ? getComponentHmrCode(component.uniqueId, hmrCache) : [], template))
       }
 
       // remove macro imports
@@ -61,7 +60,9 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
 
   program.body.unshift(...dedupeImports(imports, ctx))
 
-  return print(program).code
+  return `const __componentsMap = new Map();
+  ${print(program).code}
+export { __componentsMap }`
 }
 
 function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {
