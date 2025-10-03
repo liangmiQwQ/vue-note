@@ -29,7 +29,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           },
         }).visit(parseSync('foo.ts', _script.code).program)
 
-        this.replace(wrapperComponent(script!, injectHmr ? getHmrCode() : []))
+        this.replace(wrapperComponent(script!, injectHmr ? getHmrCode(_script.uniqueId) : []))
       }
 
       // remove macro imports

@@ -6,6 +6,7 @@ import { getUniqueFilename, getUniqueID } from './utils/id'
 export interface CompiledComponent {
   code: string
   id: string
+  uniqueId: string
   uniqueFilename: string
 }
 
@@ -20,6 +21,7 @@ export function parseComponents(filename: string, rawComponents: RawComponent[])
 
     return {
       id: e.id,
+      uniqueId,
       uniqueFilename,
       code: compileScript(descriptor, {
         isProd: process.env.NODE_ENV === 'production',
