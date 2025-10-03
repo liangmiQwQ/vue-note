@@ -68,10 +68,11 @@ export function getRawComponents(astResult: ParseResult, ctx: Rollup.TransformPl
               template = (_templateExpression as ExpressionStatement).expression as CallExpression
             }
 
+            const id = getID(rawComponents.length)
             rawComponents.push({
               script: `import {${variablesScopeTracker.getVariablesInScope().join(',')}} from 'vue-note';${print(component).code.slice(1, -1)}`,
               template: template ? getTemplate(template.callee.end, template.end, astResult.comments) : '',
-              id: getID(node),
+              id,
             })
           }
           else {

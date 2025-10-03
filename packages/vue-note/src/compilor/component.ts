@@ -1,15 +1,19 @@
 import type { RawComponent } from './parse'
 import process from 'node:process'
-import { compileScript, parse } from 'vue/compiler-sfc'
+import { compileScript, compileTemplate, parse } from 'vue/compiler-sfc'
 import { getUniqueFilename, getUniqueID } from './utils/id'
 
 export interface CompiledComponent {
-  code: string
+  code: {
+    main: string
+    template?: string
+  }
   id: string
+  uniqueId: string
   uniqueFilename: string
 }
 
-export function parseComponents(filename: string, rawComponents: RawComponent[]): CompiledComponent[] {
+export function parseComponents(filename: string, rawComponents: RawComponent[], detached: boolean): CompiledComponent[] {
   return rawComponents.map((e) => {
     const _vueSFC = generateSFC(e)
 
@@ -18,20 +22,38 @@ export function parseComponents(filename: string, rawComponents: RawComponent[])
 
     const { descriptor } = parse(_vueSFC, { ignoreEmpty: false, sourceMap: false, filename: uniqueFilename })
 
-    return {
-      id: e.id,
-      uniqueFilename,
-      code: compileScript(descriptor, {
-        isProd: process.env.NODE_ENV === 'production',
-        id: uniqueId,
-        inlineTemplate: true,
-        sourceMap: false,
-        templateOptions: {
+    const script = compileScript(descriptor, {
+      isProd: process.env.NODE_ENV === 'production',
+      id: uniqueId,
+      sourceMap: false,
+      inlineTemplate: !detached,
+      templateOptions: !detached
+        ? {
+            source: descriptor.template!.content,
+            filename: descriptor.filename,
+            id: uniqueId,
+          }
+        : undefined,
+    })
+    const code = {
+      main: script.content,
+      template: detached
+        ? compileTemplate({
           source: descriptor.template!.content,
           filename: descriptor.filename,
           id: uniqueId,
-        },
-      }).content,
+          compilerOptions: {
+            bindingMetadata: script.bindings, // Bind script
+          },
+        }).code
+        : undefined,
+    }
+
+    return {
+      id: e.id,
+      uniqueId,
+      uniqueFilename,
+      code,
     }
   })
 }
