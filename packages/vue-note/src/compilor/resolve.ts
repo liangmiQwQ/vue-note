@@ -1,5 +1,6 @@
 import type { Expression, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program } from 'oxc-parser'
 import type { Rollup } from 'vite'
+import type { TransformHashCache } from '../vite/transform'
 import type { CompiledComponent } from './component'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
@@ -8,7 +9,7 @@ import { getComponentHmrCode, getFileHmrCode } from './utils/hmr'
 import { getID } from './utils/id'
 import { wrapperComponent } from './utils/wrapper'
 
-export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, injectHmr: boolean): string {
+export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, hmrCache: [TransformHashCache | undefined, TransformHashCache] | false): string {
   const imports: ImportDeclaration[] = []
 
   walk(program, {
@@ -29,7 +30,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           },
         }).visit(parseSync('foo.ts', _script.code).program)
 
-        this.replace(wrapperComponent(script!, injectHmr ? getComponentHmrCode(_script.uniqueId) : []))
+        this.replace(wrapperComponent(script!, hmrCache ? getComponentHmrCode(_script.uniqueId, hmrCache) : []))
       }
 
       // remove macro imports

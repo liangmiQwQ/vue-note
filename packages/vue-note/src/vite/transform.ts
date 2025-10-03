@@ -24,7 +24,7 @@ export async function transform(
   query: VueNoteQuery,
   ssr: boolean,
   opt: TransformOption,
-  _cache?: TransformHashCache,
+  cache?: TransformHashCache,
 ): Promise<{ result?: TransformResult, cache?: TransformHashCache }> {
   if (query.raw)
     return {}
@@ -32,9 +32,9 @@ export async function transform(
   const hmr = !ssr && opt.server && opt.server.config.server.hmr !== false && !opt.isProduction
 
   const fileParseResult = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
-  const cache = getCache(filename, fileParseResult)
+  const _cache = getCache(filename, fileParseResult)
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
-  const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr)
+  const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr && [cache, _cache])
 
   let result: TransformResult
   const { rolldownVersion, transformWithOxc } = await import('vite')
@@ -70,7 +70,7 @@ export async function transform(
 
   return {
     result,
-    cache,
+    cache: _cache,
   }
 }
 
