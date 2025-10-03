@@ -1,8 +1,11 @@
 import type { PluginOption } from 'vite'
+import type { TransformOption } from './transform'
 import { parseQuery } from './query'
 import { transform } from './transform'
 
 export function VueNote(): PluginOption {
+  const transformOption: Partial<TransformOption> = {}
+
   return {
     name: 'vue-note',
     async transform(src, id, opt) {
@@ -12,7 +15,13 @@ export function VueNote(): PluginOption {
       if (!filename.endsWith('.ts'))
         return
 
-      return transform(src, filename, this, query, ssr)
+      return transform(src, filename, this, query, ssr, transformOption as TransformOption)
+    },
+    configureServer(server) {
+      transformOption.server = server
+    },
+    configResolved(config) {
+      transformOption.isProduction = config.isProduction
     },
     config(config) { // disable esbuild (oxc) to process typescript
       if (!config.esbuild) {
