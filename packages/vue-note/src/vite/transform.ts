@@ -1,8 +1,11 @@
 import type { Rollup, TransformResult, ViteDevServer } from 'vite'
+import type { FileParseResult } from '../compilor/parse'
 import type { VueNoteQuery } from './query'
+import { createHash } from 'node:crypto'
 import { parseComponents } from '../compilor/component'
 import { parse } from '../compilor/parse'
 import { resolve } from '../compilor/resolve'
+import { getUniqueID } from '../compilor/utils/id'
 
 export interface TransformOption {
   server: ViteDevServer
@@ -29,6 +32,7 @@ export async function transform(
   const hmr = !ssr && opt.server && opt.server.config.server.hmr !== false && !opt.isProduction
 
   const fileParseResult = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
+  const cache = getCache(filename, fileParseResult)
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
   const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr)
 
@@ -66,5 +70,19 @@ export async function transform(
 
   return {
     result,
+    cache,
+  }
+}
+
+function getCache(filename: string, result: FileParseResult): TransformHashCache {
+  const template = new Map<string, string>()
+
+  result.rawComponents.forEach((e) => {
+    template.set(getUniqueID(filename, e.id), createHash('md5').update(e.template).digest('hex'))
+  })
+
+  return {
+    ast: createHash('md5').update(JSON.stringify(result.astRestult.program)).digest('hex'),
+    template,
   }
 }
