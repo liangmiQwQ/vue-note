@@ -1,10 +1,12 @@
 import type { PluginOption } from 'vite'
-import type { TransformOption } from './transform'
+import type { TransformHashCache, TransformOption } from './transform'
 import { parseQuery } from './query'
 import { transform } from './transform'
 
 export function VueNote(): PluginOption {
   const transformOption: Partial<TransformOption> = {}
+
+  let lastTransformCache: TransformHashCache | undefined
 
   return {
     name: 'vue-note',
@@ -15,7 +17,17 @@ export function VueNote(): PluginOption {
       if (!filename.endsWith('.ts'))
         return
 
-      const { result } = await transform(src, filename, this, query, ssr, transformOption as TransformOption)
+      const { result, cache } = await transform(
+        src,
+        filename,
+        this,
+        query,
+        ssr,
+        transformOption as TransformOption,
+        lastTransformCache,
+      )
+      if (cache)
+        lastTransformCache = cache
       return result
     },
     configureServer(server) {

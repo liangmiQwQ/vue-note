@@ -9,7 +9,20 @@ export interface TransformOption {
   isProduction: boolean
 }
 
-export async function transform(src: string, filename: string, ctx: Rollup.TransformPluginContext, query: VueNoteQuery, ssr: boolean, opt: TransformOption): Promise<{ result?: TransformResult }> {
+export interface TransformHashCache {
+  ast: string
+  template: Map<string, string>
+}
+
+export async function transform(
+  src: string,
+  filename: string,
+  ctx: Rollup.TransformPluginContext,
+  query: VueNoteQuery,
+  ssr: boolean,
+  opt: TransformOption,
+  _cache?: TransformHashCache,
+): Promise<{ result?: TransformResult, cache?: TransformHashCache }> {
   if (query.raw)
     return {}
 
