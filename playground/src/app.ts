@@ -13,7 +13,7 @@ const AppHome = defineCommentComponent(() => {
 })
 
 const Counter = defineCommentComponent(() => {
-  const count = ref(0)
+  const count = ref(5)
   const increase = (): any => count.value += 1
 
   defineTemplate(/* @template
@@ -25,7 +25,7 @@ export default defineCommentComponent(() => {
   const message = ref('Good Morning')
 
   defineTemplate(/* @template
-    <div> {{ message }} </div>
+    <div> {{ message }} 1 2 0</div>
     <AppHome msg="Hello World! " />
     <Counter />
   */)
