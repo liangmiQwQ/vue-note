@@ -30,7 +30,7 @@ export async function transform(
 
   const fileParseResult = parse(src, filename, ctx) // get AST & raw components (scripts and templates)
   const _cache = getCache(filename, fileParseResult)
-  const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
+  const compiledComponents = parseComponents(filename, fileParseResult.rawComponents, hmr)
   const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr && [cache, _cache])
 
   let result: TransformResult

@@ -1,4 +1,4 @@
-import type { Expression, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program } from 'oxc-parser'
+import type { Expression, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program, Statement } from 'oxc-parser'
 import type { Rollup } from 'vite'
 import type { CompiledComponent } from './component'
 import type { CacheHash } from './utils/hmr'
@@ -16,9 +16,10 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
     enter(node) {
       // replace defineCommentComponent to compiled component
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'defineCommentComponent') {
-        const _script = compiledComponents.find(e => e.id === getID(node))!
+        const component = compiledComponents.find(e => e.id === getID(node))!
 
         let script: Expression | undefined
+        let template: Statement | undefined
 
         new Visitor({
           ExportDefaultDeclaration(decl) {
@@ -28,9 +29,22 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
             // collect imports
             imports.push(decl)
           },
-        }).visit(parseSync('foo.ts', _script.code).program)
+        }).visit(parseSync('foo.ts', component.code.main).program)
 
-        this.replace(wrapperComponent(script!, hmrCache ? getComponentHmrCode(_script.uniqueId, hmrCache) : []))
+        if (component.code.template) {
+          new Visitor({
+            FunctionDeclaration(decl) {
+              template = decl
+            },
+            ImportDeclaration(decl) {
+              // collect imports
+              imports.push(decl)
+            },
+          }).visit(parseSync('foo.ts', component.code.template).program)
+        }
+
+        const hmrScript = hmrCache ? getComponentHmrCode(component.uniqueId, hmrCache) : []
+        this.replace(wrapperComponent(script!, [...hmrScript], template))
       }
 
       // remove macro imports

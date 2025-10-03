@@ -1,7 +1,7 @@
 import type { Directive, Expression, Statement } from 'oxc-parser'
 import { parseSync } from 'oxc-parser'
 
-export function wrapperComponent(definention: Expression, injectedCode: (Directive | Statement)[] | string): Expression {
+export function wrapperComponent(definention: Expression, injectedCode: (Directive | Statement)[] | string, template?: Statement): Expression {
   const range = { start: 0, end: 0 }
 
   let inject: (Directive | Statement)[]
@@ -51,6 +51,7 @@ export function wrapperComponent(definention: Expression, injectedCode: (Directi
               kind: 'const',
               declare: false,
             },
+            ...getTemplatInject(template, range),
             ...inject,
             {
               type: 'ReturnStatement',
@@ -76,4 +77,52 @@ export function wrapperComponent(definention: Expression, injectedCode: (Directi
       },
     },
   }
+}
+
+function getTemplatInject(template: Statement | undefined, range = { start: 0, end: 0 }): Statement[] {
+  return (template
+    ? [
+        template,
+        {
+          type: 'ExpressionStatement',
+          ...range,
+          expression: {
+            type: 'AssignmentExpression',
+            ...range,
+            operator: '=',
+            left: {
+              type: 'MemberExpression',
+              ...range,
+              object: {
+                type: 'Identifier',
+                ...range,
+                decorators: [],
+                name: '_component',
+                optional: false,
+                typeAnnotation: null,
+              },
+              property: {
+                type: 'Identifier',
+                ...range,
+                decorators: [],
+                name: 'render',
+                optional: false,
+                typeAnnotation: null,
+              },
+              optional: false,
+              computed: false,
+            },
+            right: {
+              type: 'Identifier',
+              ...range,
+              decorators: [],
+              name: 'render',
+              optional: false,
+              typeAnnotation: null,
+            },
+          },
+          directive: null,
+        },
+      ]
+    : [])
 }
