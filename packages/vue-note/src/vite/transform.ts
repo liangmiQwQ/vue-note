@@ -2,6 +2,7 @@ import type { Rollup, TransformResult, ViteDevServer } from 'vite'
 import type { FileParseResult } from '../compilor/parse'
 import type { VueNoteQuery } from './query'
 import { createHash } from 'node:crypto'
+import { walk } from 'oxc-walker'
 import { parseComponents } from '../compilor/component'
 import { parse } from '../compilor/parse'
 import { resolve } from '../compilor/resolve'
@@ -81,8 +82,20 @@ function getCache(filename: string, result: FileParseResult): TransformHashCache
     template.set(getUniqueID(filename, e.id), createHash('md5').update(e.template).digest('hex'))
   })
 
+  const programIgnoredLocation = JSON.parse(JSON.stringify(result.astRestult.program))
+
+  walk(programIgnoredLocation, {
+    enter(node) {
+      node.range = [0, 0]
+      node.start = 0
+      node.end = 0
+
+      this.replace(node)
+    },
+  })
+
   return {
-    ast: createHash('md5').update(JSON.stringify(result.astRestult.program)).digest('hex'),
+    ast: createHash('md5').update(JSON.stringify(programIgnoredLocation)).digest('hex'),
     template,
   }
 }
