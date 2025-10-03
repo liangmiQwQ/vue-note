@@ -1,5 +1,6 @@
 import type { Rollup, TransformResult, ViteDevServer } from 'vite'
 import type { FileParseResult } from '../compilor/parse'
+import type { CacheHash } from '../compilor/utils/hmr'
 import type { VueNoteQuery } from './query'
 import { createHash } from 'node:crypto'
 import { walk } from 'oxc-walker'
@@ -13,11 +14,6 @@ export interface TransformOption {
   isProduction: boolean
 }
 
-export interface TransformHashCache {
-  ast: string
-  template: Map<string, string>
-}
-
 export async function transform(
   src: string,
   filename: string,
@@ -25,8 +21,8 @@ export async function transform(
   query: VueNoteQuery,
   ssr: boolean,
   opt: TransformOption,
-  cache?: TransformHashCache,
-): Promise<{ result?: TransformResult, cache?: TransformHashCache }> {
+  cache?: CacheHash,
+): Promise<{ result?: TransformResult, cache?: CacheHash }> {
   if (query.raw)
     return {}
 
@@ -75,7 +71,7 @@ export async function transform(
   }
 }
 
-function getCache(filename: string, result: FileParseResult): TransformHashCache {
+function getCache(filename: string, result: FileParseResult): CacheHash {
   const template = new Map<string, string>()
 
   result.rawComponents.forEach((e) => {

@@ -1,12 +1,13 @@
 import type { PluginOption } from 'vite'
-import type { TransformHashCache, TransformOption } from './transform'
+import type { CacheHash } from '../compilor/utils/hmr'
+import type { TransformOption } from './transform'
 import { parseQuery } from './query'
 import { transform } from './transform'
 
 export function VueNote(): PluginOption {
   const transformOption: Partial<TransformOption> = {}
 
-  let lastTransformCache: TransformHashCache | undefined
+  let lastTransformCache: CacheHash | undefined
 
   return {
     name: 'vue-note',

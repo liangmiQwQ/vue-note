@@ -1,7 +1,7 @@
 import type { Expression, ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, Program } from 'oxc-parser'
 import type { Rollup } from 'vite'
-import type { TransformHashCache } from '../vite/transform'
 import type { CompiledComponent } from './component'
+import type { CacheHash } from './utils/hmr'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
 import { print } from 'recast'
@@ -9,7 +9,7 @@ import { getComponentHmrCode } from './utils/hmr'
 import { getID } from './utils/id'
 import { wrapperComponent } from './utils/wrapper'
 
-export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, hmrCache: [TransformHashCache | undefined, TransformHashCache] | false): string {
+export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, hmrCache: [CacheHash | undefined, CacheHash] | false): string {
   const imports: ImportDeclaration[] = []
 
   walk(program, {

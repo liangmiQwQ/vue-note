@@ -1,7 +1,11 @@
 import type { Directive, Statement } from 'oxc-parser'
-import type { TransformHashCache } from '../../vite/transform'
 
-export function getComponentHmrCode(uniqueId: string, cache: [TransformHashCache | undefined, TransformHashCache]): (Statement | Directive) [] {
+export interface CacheHash {
+  ast: string
+  template: Map<string, string>
+}
+
+export function getComponentHmrCode(uniqueId: string, cache: [CacheHash | undefined, CacheHash]): (Statement | Directive) [] {
   const range = { start: 0, end: 0 }
   const _templateChanged = cache[1].template.get(uniqueId) !== cache[0]?.template.get(uniqueId)
   const _scriptChanged = cache[0]?.ast !== cache[1].ast
