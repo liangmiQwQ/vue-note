@@ -9,9 +9,9 @@ export interface TransformOption {
   isProduction: boolean
 }
 
-export async function transform(src: string, filename: string, ctx: Rollup.TransformPluginContext, query: VueNoteQuery, ssr: boolean, opt: TransformOption): Promise<TransformResult | void> {
+export async function transform(src: string, filename: string, ctx: Rollup.TransformPluginContext, query: VueNoteQuery, ssr: boolean, opt: TransformOption): Promise<{ result?: TransformResult }> {
   if (query.raw)
-    return
+    return {}
 
   const hmr = !ssr && opt.server && opt.server.config.server.hmr !== false && !opt.isProduction
 
@@ -19,6 +19,7 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
   const compiledComponents = parseComponents(filename, fileParseResult.rawComponents)
   const resolvedCode = resolve(fileParseResult.astRestult.program, compiledComponents, ctx, hmr)
 
+  let result: TransformResult
   const { rolldownVersion, transformWithOxc } = await import('vite')
   if (rolldownVersion) {
     const { code } = await transformWithOxc(
@@ -28,7 +29,7 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
         lang: 'ts',
       },
     )
-    return {
+    result = {
       code,
       map: null,
     }
@@ -44,9 +45,13 @@ export async function transform(src: string, filename: string, ctx: Rollup.Trans
         loader: 'ts',
       },
     )
-    return {
+    result = {
       code,
       map: null,
     }
+  }
+
+  return {
+    result,
   }
 }

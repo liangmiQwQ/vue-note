@@ -15,7 +15,8 @@ export function VueNote(): PluginOption {
       if (!filename.endsWith('.ts'))
         return
 
-      return transform(src, filename, this, query, ssr, transformOption as TransformOption)
+      const { result } = await transform(src, filename, this, query, ssr, transformOption as TransformOption)
+      return result
     },
     configureServer(server) {
       transformOption.server = server

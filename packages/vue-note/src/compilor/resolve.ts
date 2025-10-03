@@ -4,7 +4,7 @@ import type { CompiledComponent } from './component'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
 import { print } from 'recast'
-import { getHmrCode } from './utils/hmr'
+import { getComponentHmrCode, getFileHmrCode } from './utils/hmr'
 import { getID } from './utils/id'
 import { wrapperComponent } from './utils/wrapper'
 
@@ -29,7 +29,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           },
         }).visit(parseSync('foo.ts', _script.code).program)
 
-        this.replace(wrapperComponent(script!, injectHmr ? getHmrCode(_script.uniqueId) : []))
+        this.replace(wrapperComponent(script!, injectHmr ? getComponentHmrCode(_script.uniqueId) : []))
       }
 
       // remove macro imports
@@ -46,7 +46,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
 
   program.body.unshift(...dedupeImports(imports, ctx))
 
-  return print(program).code
+  return `${print(program).code}\n${getFileHmrCode()}`
 }
 
 function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {
