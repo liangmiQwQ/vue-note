@@ -12,11 +12,12 @@ import { wrapperComponent } from './utils/wrapper'
 export function resolve(program: Program, compiledComponents: CompiledComponent[], ctx: Rollup.TransformPluginContext, hmrCache: [CacheHash | undefined, CacheHash] | false): string {
   const imports: ImportDeclaration[] = []
 
+  let index = 0
   walk(program, {
     enter(node) {
       // replace defineCommentComponent to compiled component
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'defineCommentComponent') {
-        const component = compiledComponents.find(e => e.id === getID(node))!
+        const component = compiledComponents.find(e => e.id === getID(index))!
 
         let script: Expression | undefined
         let template: Statement | undefined
@@ -44,6 +45,8 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
         }
 
         this.replace(wrapperComponent(script!, hmrCache ? getComponentHmrCode(component.uniqueId, hmrCache) : [], template))
+
+        index++
       }
 
       // remove macro imports
