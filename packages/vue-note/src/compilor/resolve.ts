@@ -5,7 +5,7 @@ import type { CompiledComponent } from './component'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
 import { print } from 'recast'
-import { getComponentHmrCode, getFileHmrCode } from './utils/hmr'
+import { getComponentHmrCode } from './utils/hmr'
 import { getID } from './utils/id'
 import { wrapperComponent } from './utils/wrapper'
 
@@ -47,7 +47,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
 
   program.body.unshift(...dedupeImports(imports, ctx))
 
-  return `${print(program).code}\n${getFileHmrCode()}`
+  return print(program).code
 }
 
 function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {

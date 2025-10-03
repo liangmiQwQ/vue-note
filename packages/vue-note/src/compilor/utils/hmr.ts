@@ -22,9 +22,3 @@ typeof __VUE_HMR_RUNTIME__ !== "undefined" && __VUE_HMR_RUNTIME__.createRecord(_
 ${hmrCode}
 `
 }
-
-export function getFileHmrCode(): string {
-  return `
-
-`
-}
