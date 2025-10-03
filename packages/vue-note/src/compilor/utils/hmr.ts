@@ -21,14 +21,12 @@ if (import.meta.hot) {
       return
     }
     const __component = mod.__componentsMap.get(_component.__hmrId)
-    console.log('hmr', __component, _component._templateChanged, _component._scriptChanged)
     if(!__component) { 
       return
     }
     if (__component._scriptChanged) {
       window.location.reload();
     } else if(__component._templateChanged) {
-     console.log(__component.__hmrId, __component.render);
       __VUE_HMR_RUNTIME__.rerender(__component.__hmrId, __component.render);
     }
   })
