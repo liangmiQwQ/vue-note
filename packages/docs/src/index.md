@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "Vue Note"
-  text: "Write Vue template in code comment? What?!"
-  tagline: My great project tagline
+  text: "Write Vue template in code comment?"
+  tagline: A easier and more flexible way to write Vue
   actions:
     - theme: brand
       text: Markdown Examples

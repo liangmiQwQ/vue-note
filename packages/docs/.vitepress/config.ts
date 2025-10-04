@@ -1,29 +1,34 @@
 import { defineConfig } from 'vitepress'
 
+const SidebarNav = [
+  { text: 'Guide', items: [
+    { text: 'Introduction', link: '/guide/introduction' },
+    { text: 'Quick Start', link: '/guide/quick-start' },
+    { text: 'Flexibility', link: '/guide/flexibility' },
+  ] },
+  { text: 'Advenced', items: [
+    { text: 'Linter & Formatter', link: '/advenced/linter-formatter' },
+    { text: 'TypeScript', link: '/advenced/typescript' },
+    { text: 'API Reference', link: '/advenced/api-reference' },
+
+  ] },
+  { text: 'Extra Topic', items: [
+    { text: 'Design Philosophy', link: '/extra/design-philosophy' },
+    { text: 'Contribute Guide', link: '/extra/contribute' },
+  ] },
+]
+
 export default defineConfig({
   title: 'Vue Note',
-  description: 'Write Vue template in code comment',
+  description: 'Write Vue template in code comment?',
   srcDir: './src',
   themeConfig: {
-    nav: [],
+    nav: SidebarNav,
+    search: {
+      provider: 'local',
+    },
     sidebar: {
-      '/': [
-        { text: 'Guide', items: [
-          { text: 'Introduction', link: '/guide/introduction' },
-          { text: 'Quick Start', link: '/guide/quick-start' },
-          { text: 'Flexibility', link: '/guide/flexibility' },
-        ] },
-        { text: 'Advenced', items: [
-          { text: 'Linter & Formatter', link: '/advenced/linter-formatter' },
-          { text: 'TypeScript', link: '/advenced/typescript' },
-          { text: 'API Reference', link: '/advenced/api-reference' },
-
-        ] },
-        { text: 'Extra Topic', items: [
-          { text: 'Design Philosophy', link: '/extra/design-philosophy' },
-          { text: 'Contribute Guide', link: '/extra/contribute' },
-        ] },
-      ],
+      '/': SidebarNav,
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/liangmiQwQ/vue-note' },
