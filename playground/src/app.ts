@@ -1,3 +1,4 @@
+/* eslint-disable ts/explicit-function-return-type */
 /* eslint-disable unused-imports/no-unused-vars */
 import { ref } from 'vue'
 import { defineCommentComponent, defineTemplate } from 'vue-note'
@@ -31,9 +32,17 @@ export default defineCommentComponent(() => {
     */)
   })
 
+  const BUTTON_NAME_LIST = [undefined, 'Mike', 'Cindy']
+  const buttonName = ref()
+
+  function handleButtonName() {
+    buttonName.value = BUTTON_NAME_LIST[BUTTON_NAME_LIST.findIndex(e => e === buttonName.value) + 1]
+  }
+
   defineTemplate(/* @template
     <div> {{ message }} </div>
     <AppHome msg="Hello World! " />
+    <DIYComponent :buttonName @click='handleButtonName' />
     <Counter />
   */)
 })
