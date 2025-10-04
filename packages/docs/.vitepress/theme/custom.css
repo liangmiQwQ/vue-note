@@ -1,12 +1,12 @@
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-c-brand-1: #4ab940ff;
-  --vp-c-brand-2: #36982dff;
-  --vp-c-brand-3: #267d1eff;
+  --vp-c-brand-1: hsla(120, 60%, 40%);
+  --vp-c-brand-2: hsl(120, 50%, 50%);
+  --vp-c-brand-3: hsl(120, 60%, 42%);
   --vp-home-hero-name-background: linear-gradient(
     170deg,
-    var(--vp-c-brand-1) 40%,
-    var(--vp-c-brand-2) 60%
+    var(--vp-c-brand-2) 40%,
+    var(--vp-c-brand-3) 60%
   );
 }
 

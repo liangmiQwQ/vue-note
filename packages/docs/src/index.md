@@ -8,11 +8,11 @@ hero:
   tagline: A easier and more flexible way to write Vue
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Quick Start
+      link: /guide/quick-start
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Why Vue Note
+      link: /guide/introduction
 
 features:
   - title: Feature A

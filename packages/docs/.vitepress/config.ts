@@ -1,3 +1,4 @@
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 
 const SidebarNav = [
@@ -41,5 +42,10 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright 2025 - Present Liang Mi',
     },
+  },
+  vite: {
+    plugins: [
+      UnoCSS(),
+    ],
   },
 })

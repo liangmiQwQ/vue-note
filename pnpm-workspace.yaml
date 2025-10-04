@@ -23,6 +23,8 @@ catalogs:
     tsx: ^4.20.6
     typescript: ^5.9.3
   docs:
+    '@iconify-json/logos': ^1.2.9
+    unocss: ^66.5.2
     vitepress: ^1.6.4
   testing:
     tinyexec: ^1.0.1
