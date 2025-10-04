@@ -11,7 +11,7 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@iconify-json/logos": "catalog:docs",
+    "@iconify-json/carbon": "catalog:docs",
     "unocss": "catalog:docs",
     "vitepress": "catalog:docs"
   }

@@ -23,7 +23,11 @@ export default defineConfig({
   title: 'Vue Note',
   description: 'Write Vue template in code comment?',
   srcDir: './src',
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+  ],
   themeConfig: {
+    logo: '/favicon.svg',
     nav: SidebarNav,
     search: {
       provider: 'local',

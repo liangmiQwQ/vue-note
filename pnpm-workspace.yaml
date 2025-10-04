@@ -23,7 +23,7 @@ catalogs:
     tsx: ^4.20.6
     typescript: ^5.9.3
   docs:
-    '@iconify-json/logos': ^1.2.9
+    '@iconify-json/carbon': ^1.2.13
     unocss: ^66.5.2
     vitepress: ^1.6.4
   testing:

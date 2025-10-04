@@ -44,9 +44,9 @@ catalogs:
       specifier: ^5.9.3
       version: 5.9.3
   docs:
-    '@iconify-json/logos':
-      specifier: ^1.2.9
-      version: 1.2.9
+    '@iconify-json/carbon':
+      specifier: ^1.2.13
+      version: 1.2.13
     unocss:
       specifier: ^66.5.2
       version: 66.5.2
@@ -134,9 +134,9 @@ importers:
 
   packages/docs:
     devDependencies:
-      '@iconify-json/logos':
+      '@iconify-json/carbon':
         specifier: catalog:docs
-        version: 1.2.9
+        version: 1.2.13
       unocss:
         specifier: catalog:docs
         version: 66.5.2(postcss@8.5.6)(vite@7.1.7(@types/node@24.6.2)(jiti@2.6.0)(lightningcss@1.30.2)(tsx@4.20.6)(yaml@2.8.1))
@@ -773,8 +773,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/logos@1.2.9':
-    resolution: {integrity: sha512-G6VCdFnwZcrT6Eveq3m43oJfLw/CX8plwFcE+2jgv3fiGB64pTmnU7Yd1MNZ/eA+/Re2iEDhuCfSNOWTHwwK8w==}
+  '@iconify-json/carbon@1.2.13':
+    resolution: {integrity: sha512-vXrFFKkfYaZSwf4WfnRQJQMnpEzxlPlupwZZlS1WvOAuNnWahsUudHycaMpoBzDqBfniH4KQ2b5qnw0VMKoJug==}
 
   '@iconify-json/simple-icons@1.2.53':
     resolution: {integrity: sha512-8GEW5mshsPAZpVAJmkBG/niR2qn8t4U03Wmz6aSD9R4VMZKTECqbOxH3z4inA0JfZOoTvP4qoK9T2VXAx2Xg5g==}
@@ -3915,7 +3915,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify-json/logos@1.2.9':
+  '@iconify-json/carbon@1.2.13':
     dependencies:
       '@iconify/types': 2.0.0
 

@@ -6,6 +6,9 @@ hero:
   name: "Vue Note"
   text: "Write Vue template in code comment?"
   tagline: A easier and more flexible way to write Vue
+  image:
+    src: /favicon.svg
+    alt: Vue Note
   actions:
     - theme: brand
       text: Quick Start
@@ -15,10 +18,17 @@ hero:
       link: /guide/introduction
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: <span class="i-carbon:horizontal-view"></span>
+    title: Flexible Components
+    details: Declare your component anywhere, even in another component
+    link: /guide/flexibility
+    linkText: Flexibility
+
+  - icon: <span class="i-carbon:code"></span>
+    title: Vue Native DX
+    details: Keep all macros and reactivity you love, while enjoying seamless integration with the Vue ecosystem
+
+  - icon: <span class="i-carbon:forecast-lightning"></span>
+    title: Zero Overhead
+    details: Leverage native Vue compiler optimizations to achieve maximum performance without any runtime cost.
 ---
