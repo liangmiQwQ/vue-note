@@ -25,6 +25,12 @@ const Counter = defineCommentComponent(() => {
 export default defineCommentComponent(() => {
   const message = ref('Good Morning')
 
+  const Component = defineCommentComponent(() => {
+    defineTemplate(/* @template
+      <h1>Good Morning</h1>
+    */)
+  })
+
   defineTemplate(/* @template
     <div> {{ message }} </div>
     <AppHome msg="Hello World! " />
