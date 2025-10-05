@@ -1,6 +1,6 @@
 # What is Vue Note?
 
-**Vue Note** provides a new way to write **Vue components**. It allows you to write Vue components not only in `.vue` **Single-File Components (SFCs)**, but **anywhere you want**.
+**Vue Note** provides a new way to write **Vue components**. It allows you to define Vue components **directly in TypeScript/JavaScript files**.
 
 Here is a mini example:
 
