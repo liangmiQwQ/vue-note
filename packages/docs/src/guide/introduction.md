@@ -14,13 +14,50 @@ export default defineCommentComponent(() => {
 })
 ```
 
-## Why Vue Note?
+## Why we need another style to write Vue?
 
-Vue's [Single File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc.html) are powerful and intuitive, but they may introduce challenges in some situations, such as file overhead when creating many small components or dynamic component creation in complex applications.
+Vue has already provided a excellent and effecient way to build application through [Single File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc.html). It's clean, structured most of the time.
 
-While solutions like [Vue Vine](https://vue-vine.dev) have explored ways to address these issues by enabling multiple components in a single file, Vue Note takes inspiration from Vue Vine and goes further to offer a flexible, experimental tool that enhances Vue's ecosystem.
+However, as projects grow **larger or more complex**, some developers may find it **inflexible** to always define component in `.vue` files.
 
-Vue Note is designed as a complement to Vue's existing tools, not a replacement. It shines in scenarios where traditional SFCs feel cumbersome, such as when you need lightweight, inline components or want to reduce file overhead. Here is an example of a dynamic button component in Vue Note, showcasing its ability to define components concisely:
+::: info *Real-world* example: you are trying building a `Card` component for unified ui. You need to create a directory like this:
+
+```log
+components/Card
+├── Card.vue
+├── CardContent.vue
+├── CardDescription.vue
+├── CardFooter.vue
+├── CardHeader.vue
+├── CardTitle.vue
+└── index.ts
+```
+
+And export all of them at `index.ts` after writing the component codes in these six files
+
+```typescript
+export { default as Card } from './Card.vue'
+export { default as CardContent } from './CardContent.vue'
+export { default as CardDescription } from './CardDescription.vue'
+export { default as CardFooter } from './CardFooter.vue'
+export { default as CardHeader } from './CardHeader.vue'
+export { default as CardTitle } from './CardTitle.vue'
+```
+
+This is the thing what [ShadCN Vue](https://github.com/unovue/shadcn-vue/tree/a8f4019014c52bb28210769a410d929a9fc6a9af/apps/www/src/registry/default/ui/card) are actually doing, Maybe it is still not bad for 7 component, but if we need to build a [SideBar](https://github.com/unovue/shadcn-vue/tree/a8f4019014c52bb28210769a410d929a9fc6a9af/apps/www/src/registry/default/ui/sidebar) with more than 10 or 20 components?
+
+This can lead to higher maintenance overhead and scattered logic across multiple files.
+:::
+
+How to make it better? There are some possible solutions:
+
+- [Vue Vine](https://vue-vine.dev/) provides a fantastic way to make components by defining function. However, it still comes with flexibility limitations and design choices that developers need to adapt to. For example, it has its own way to defining props and have special rules on template strings, which may need time to learn and switch for developers.
+- [Vue JSX](https://github.com/vuejs/babel-plugin-jsx) provides the flexibility of JSX for component construction, but developers may need to adapt to a different mental model compared to Vue's template-first approach. Additionally, some compile-time performance trade-offs should be considered when opting for JSX.
+- Vue Note
+
+Inspired by [Vue Vine](https://vue-vine.dev/), Vue Note allows you **write components as JavaScript expressions**, much like JSX in React, but with Vue's template reactivity and compiler optimizations.
+
+You can even define a component in another component *(Although this is not recommended in most cases)*
 
 ```typescript
 import { defineProps } from 'vue'
@@ -43,14 +80,5 @@ export default defineCommentComponent(() => {
   */)
 })
 ```
-
-## What Makes Vue Note Special?
-
-Inspired by Vue Vine, Vue Note builds on the idea of flexible component creation while addressing some of Vue Vine's limitations. Unlike Vue Vine, which focuses on multi-component files, Vue Note offers:
-
-- Template string support: Write templates using concise, inline strings for rapid prototyping.
-- Full macro compatibility: Seamlessly use Vue's `defineProps`, `defineEmits`, and other macros you like.
-- True inline components: Define components anywhere in your code, reducing the need for separate files.
-- Seamless Vue ecosystem integration: Retain Vue's reactivity and compiler optimizations without compromise.
 
 Learn more about our **flexibility approach** in [Flexibility](/guide/flexibility) and our **design philosophy** in [Design Philosophy](/extra/design-philosophy).
