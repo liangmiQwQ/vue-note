@@ -16,6 +16,7 @@ const SidebarNav = [
   { text: 'Extra Topic', items: [
     { text: 'Design Philosophy', link: '/extra/design-philosophy' },
     { text: 'Contribute Guide', link: '/extra/contribute' },
+    { text: 'Credits', link: '/extra/credits' },
   ] },
 ]
 
