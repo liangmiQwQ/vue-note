@@ -1,2 +1,2 @@
 - It's best to submitting an [issue](./issues/new) for discussion if you want to make a new feature.
-- If you encounter any issues during development or contributing, please check the [Design Philosophy](https://vue-note.liangmi.dev/extra/contribute) documentation first. You can also reach me directly at hi@liangmi.dev.
+- If you encounter any issues during development or contributing, please check the [Design Philosophy](https://vue-note.liangmi.dev/extra/contribute) documentation first. You can also reach me directly at [hi@liangmi.dev](mailto:hi@liangmi.dev).
