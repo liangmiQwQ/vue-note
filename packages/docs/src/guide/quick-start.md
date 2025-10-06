@@ -37,7 +37,6 @@ Then, write Vue component anywhere you want!
 
 ```typescript
 // main.ts
-
 import { createApp } from 'vue'
 
 createApp(defineCommentComponent(() => {
