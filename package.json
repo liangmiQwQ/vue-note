@@ -2,7 +2,7 @@
   "name": "vue-note-repo",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.18.1",
   "sideEffects": false,
   "scripts": {
     "build": "tsdown",
@@ -15,7 +15,8 @@
     "release": "bumpp -r",
     "test": "vitest",
     "typecheck": "nr build && tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "deps": "taze -r -w && ni"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
@@ -25,6 +26,7 @@
     "eslint": "catalog:cli",
     "lint-staged": "catalog:cli",
     "simple-git-hooks": "catalog:cli",
+    "taze": "catalog:cli",
     "tinyexec": "catalog:testing",
     "tsdown": "catalog:cli",
     "tsx": "catalog:cli",

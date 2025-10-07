@@ -9,16 +9,17 @@ shellEmulator: true
 
 catalogs:
   build:
-    oxc-parser: ^0.93.0
+    oxc-parser: ^0.94.0
     oxc-walker: ^0.5.2
     recast: ^0.23.11
   cli:
     '@antfu/eslint-config': ^5.4.1
     '@antfu/ni': ^26.1.0
-    bumpp: ^10.2.3
-    eslint: ^9.36.0
+    bumpp: ^10.3.1
+    eslint: ^9.37.0
     lint-staged: ^16.2.3
     simple-git-hooks: ^2.13.1
+    taze: ^19.7.0
     tsdown: ^0.15.6
     tsx: ^4.20.6
     typescript: ^5.9.3
@@ -32,7 +33,7 @@ catalogs:
     vitest-package-exports: ^0.1.1
     yaml: ^2.8.1
   types:
-    '@types/node': ^24.6.2
+    '@types/node': ^24.7.0
   vite:
     '@vitejs/plugin-vue': ^6.0.1
     vite: npm:rolldown-vite@latest
