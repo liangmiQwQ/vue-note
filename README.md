@@ -1,3 +1,6 @@
+<p align="center">
+<img src="https://raw.githubusercontent.com/liangmiQwQ/vue-note/main/packages/docs/src/public/favicon.svg" style="width:100px;" />
+</p>
 # Vue Note
 
 State: **🚧 Work in progress**
