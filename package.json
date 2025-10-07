@@ -9,6 +9,8 @@
     "dev": "tsdown --watch",
     "play": "pnpm -C playground dev",
     "lint": "eslint",
+    "docs": "pnpm -r --filter vue-note-docs docs:dev",
+    "docs:build": "pnpm -r --filter vue-note-docs docs:build",
     "prepublishOnly": "nr build",
     "release": "bumpp -r",
     "test": "vitest",

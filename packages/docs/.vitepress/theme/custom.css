@@ -1,0 +1,18 @@
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-c-brand-1: hsla(120, 60%, 40%);
+  --vp-c-brand-2: hsl(120, 50%, 50%);
+  --vp-c-brand-3: hsl(120, 60%, 42%);
+  --vp-home-hero-image-background-image: url('/favicon.svg');
+  --vp-home-hero-image-filter: blur(15px);
+  --vp-home-hero-name-background: linear-gradient(
+    170deg,
+    var(--vp-c-brand-2) 40%,
+    var(--vp-c-brand-3) 60%
+  );
+}
+
+.dark {
+  --vp-home-hero-image-background-image: url('/favicon.svg');
+  --vp-home-hero-image-filter: blur(0px);
+}

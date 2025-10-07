@@ -1,0 +1,13 @@
+<svg width="320" height="320" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect fill="#42b882" width="32" height="183" x="-76.9" y="22.36" transform="matrix(-1,0,-0.1797,0.9837,0,0)"/>
+  <rect fill="#35495f" width="16.45" height="183.1" x="-86.1" y="22.38" transform="matrix(-1,0,-0.1832,0.9831,0,0)"/>
+  <rect fill="#42b882" width="32.5" height="182.91" x="-219.15" y="23.37" transform="matrix(-1,0,-0.1777,0.9841,0,0)"/>
+  <rect fill="#35495f" width="16.41" height="183.11" x="-194.29" y="23.4" transform="matrix(-1,0,-0.1835,0.983,0,0)"/>
+  <rect fill="#42b882" width="40.31" height="47" x="15.4" y="191.55" transform="matrix(1,0,0.5252,0.851,0,0)"/>
+  <rect fill="#35495f" width="20.23" height="47.05" x="14.05" y="191.73" transform="matrix(1,0,0.5265,0.8502,0,0)"/>
+  <rect fill="#42b882" width="40.22" height="47.05" x="28.37" y="25.88" transform="matrix(1,0,0.5266,0.8501,0,0)"/>
+  <rect fill="#35495f" width="20.13" height="47.1" x="50.32" y="25.91" transform="matrix(1,0,0.528,0.8493,0,0)"/>
+  <svg xmlns="http://www.w3.org/2000/svg" width="69" height="72" x="76" y="76" viewBox="0 0 1472 1536">
+    <path fill="#35495f" d="M1386 922q46 26 59.5 77.5T1433 1097l-64 110q-26 46-77.5 59.5T1194 1254l-266-153v307q0 52-38 90t-90 38H672q-52 0-90-38t-38-90v-307l-266 153q-46 26-97.5 12.5T103 1207l-64-110q-26-46-12.5-97.5T86 922l266-154L86 614q-46-26-59.5-77.5T39 439l64-110q26-46 77.5-59.5T278 282l266 153V128q0-52 38-90t90-38h128q52 0 90 38t38 90v307l266-153q46-26 97.5-12.5T1369 329l64 110q26 46 12.5 97.5T1386 614l-266 154z"/>
+    </svg>
+</svg>

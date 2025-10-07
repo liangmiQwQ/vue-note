@@ -8,7 +8,7 @@ export default defineConfig({
   dts: true,
   workspace: {
     include: ['packages/*'],
-    exclude: ['playground'],
+    exclude: ['playground', 'packages/docs'],
   },
   tsconfig: join(import.meta.dirname, 'tsconfig.json'),
   sourcemap: process.env.NODE_ENV === 'development',
