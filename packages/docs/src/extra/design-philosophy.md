@@ -52,6 +52,6 @@ This makes Vue's compiler think `Button` comes from `vue-note`, preserving the e
 
 :::
 
-Another important think is that we should design smarter for less breaking changes. For example, we don't wrap templates in template string because that would break how template strings work inside templates. We use the block JavaScript comment since Vue templates don't support regular JavaScript comments anyway.
+Another important think is that we need **good design**. For example, we don't wrap templates in template string because that would break how template strings work inside templates. We use the block JavaScript comment since Vue templates don't support regular JavaScript comments anyway.
 
 In a word, the final goal is that we want Vue Note to feel like a **natural extension** of Vue.js, not a completely different framework. This makes it easier for developers to adopt and use in their projects.
