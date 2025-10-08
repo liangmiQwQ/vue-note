@@ -1,0 +1,118 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`development > should work and inject HMR code 1`] = `
+{
+  "cache": {
+    "ast": "da50a3ae9b19c971f6be6113f209f39a",
+    "template": Map {
+      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+    },
+  },
+  "result": {
+    "code": "const __componentsMap = new Map();
+import { ref } from "vue";
+import { defineComponent as _defineComponent } from "vue";
+import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue";
+export default (() => {
+	const _component = _defineComponent({ setup(__props, { expose: __expose }) {
+		__expose();
+		const message = ref("Good Morning");
+		const __returned__ = { message };
+		Object.defineProperty(__returned__, "__isScriptSetup", {
+			enumerable: false,
+			value: true
+		});
+		return __returned__;
+	} });
+	function render(_ctx, _cache, $props, $setup, $data, $options) {
+		return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString($setup.message), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
+	}
+	_component.render = render;
+	_component.__hmrId = "8ae9ae3e";
+	_component._templateChanged = true;
+	_component._scriptChanged = true;
+	typeof __VUE_HMR_RUNTIME__ !== "undefined" && __VUE_HMR_RUNTIME__.createRecord(_component.__hmrId, _component);
+	__componentsMap.set(_component.__hmrId, _component);
+	if (import.meta.hot) {
+		import.meta.hot.accept((mod) => {
+			if (!mod) {
+				return;
+			}
+			const __component = mod.__componentsMap.get(_component.__hmrId);
+			if (!__component) {
+				return;
+			}
+			if (__component._scriptChanged) {
+				window.location.reload();
+			} else if (__component._templateChanged) {
+				__VUE_HMR_RUNTIME__.rerender(__component.__hmrId, __component.render);
+			}
+		});
+	}
+	return _component;
+})();
+export { __componentsMap };
+",
+    "map": null,
+  },
+}
+`;
+
+exports[`production > should work in production 1`] = `
+{
+  "cache": {
+    "ast": "da50a3ae9b19c971f6be6113f209f39a",
+    "template": Map {
+      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+    },
+  },
+  "result": {
+    "code": "const __componentsMap = new Map();
+import { ref } from "vue";
+import { defineComponent as _defineComponent } from "vue";
+import { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue";
+export default (() => {
+	const _component = _defineComponent({ setup(__props) {
+		const message = ref("Good Morning");
+		return (_ctx, _cache) => {
+			return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString(_unref(message)), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
+		};
+	} });
+	return _component;
+})();
+export { __componentsMap };
+",
+    "map": null,
+  },
+}
+`;
+
+exports[`production > should work with style imports 1`] = `
+{
+  "cache": {
+    "ast": "643891df79c91e6f1fc896851540d168",
+    "template": Map {
+      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+    },
+  },
+  "result": {
+    "code": "const __componentsMap = new Map();
+import "style.css";
+import { ref } from "vue";
+import { defineComponent as _defineComponent } from "vue";
+import { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue";
+export default (() => {
+	const _component = _defineComponent({ setup(__props) {
+		const message = ref("Good Morning");
+		return (_ctx, _cache) => {
+			return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString(_unref(message)), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
+		};
+	} });
+	return _component;
+})();
+export { __componentsMap };
+",
+    "map": null,
+  },
+}
+`;
