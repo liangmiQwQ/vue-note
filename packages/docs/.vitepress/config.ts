@@ -5,13 +5,12 @@ const SidebarNav = [
   { text: 'Guide', items: [
     { text: 'Introduction', link: '/guide/introduction' },
     { text: 'Quick Start', link: '/guide/quick-start' },
-    { text: 'Flexibility', link: '/guide/flexibility' },
+    { text: 'Usage', link: '/guide/usage' },
   ] },
   { text: 'Advenced', items: [
     { text: 'Linter & Formatter', link: '/advenced/linter-formatter' },
     { text: 'TypeScript', link: '/advenced/typescript' },
-    { text: 'API Reference', link: '/advenced/api-reference' },
-
+    { text: 'Flexibility', link: '/advenced/flexibility' },
   ] },
   { text: 'Extra Topic', items: [
     { text: 'Design Philosophy', link: '/extra/design-philosophy' },
