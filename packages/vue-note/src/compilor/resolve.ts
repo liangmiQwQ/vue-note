@@ -92,7 +92,7 @@ function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPlu
     })
   })
 
-  return imports.filter(decl => decl.specifiers && decl.specifiers.length > 0)
+  return imports
 }
 
 function getImportedUniqueID(node: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier, parent: ImportDeclaration): string {

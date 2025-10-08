@@ -2,6 +2,7 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { ref } from 'vue'
 import { defineCommentComponent, defineTemplate } from 'vue-note'
+import './style.css'
 
 const AppHome = defineCommentComponent(() => {
   const props = defineProps<{
