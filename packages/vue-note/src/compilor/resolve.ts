@@ -5,7 +5,7 @@ import type { CacheHash } from './utils/hmr'
 import { parseSync, Visitor } from 'oxc-parser'
 import { walk } from 'oxc-walker'
 import { print } from 'recast'
-import { getComponentHmrCode } from './utils/hmr'
+import { getComponentHmrCode, wrapperWithHmr } from './utils/hmr'
 import { getID } from './utils/id'
 import { wrapperComponent } from './utils/wrapper'
 
@@ -63,9 +63,9 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
 
   program.body.unshift(...dedupeImports(imports, ctx))
 
-  return `const __componentsMap = new Map();
-  ${print(program).code}
-export { __componentsMap }`
+  return hmrCache
+    ? wrapperWithHmr(print(program).code, hmrCache)
+    : print(program).code
 }
 
 function dedupeImports(rawImports: ImportDeclaration[], ctx: Rollup.TransformPluginContext): ImportDeclaration[] {
