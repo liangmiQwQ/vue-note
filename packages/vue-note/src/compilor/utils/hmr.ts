@@ -4,8 +4,8 @@ export interface CacheHash {
 }
 
 export function getComponentHmrCode(uniqueId: string, cache: [CacheHash | undefined, CacheHash]): string {
+  const _templateChanged = !!(cache[0] && cache[0]?.template.get(uniqueId) !== cache[1].template.get(uniqueId))
   // const range = { start: 0, end: 0 }
-  const _templateChanged = cache[1].template.get(uniqueId) !== cache[0]?.template.get(uniqueId)
 
   return `
 _component.__hmrId = '${uniqueId}';
@@ -16,7 +16,7 @@ __components.push(_component)
 }
 
 export function wrapperWithHmr(originalCode: string, cache: [CacheHash | undefined, CacheHash]): string {
-  const __scriptChanged = cache[0]?.ast !== cache[1].ast
+  const __scriptChanged = !!(cache[0] && cache[0]?.ast !== cache[1].ast)
 
   return `
 const __components = {
