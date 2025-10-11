@@ -6,8 +6,8 @@ import { transform } from './transform'
 
 export function VueNote(): PluginOption {
   const transformOption: Partial<TransformOption> = {}
-
-  let lastTransformCache: CacheHash | undefined
+  // in order to compare the difference between the last transform and this transform
+  const transformCache: Record<string, CacheHash> = {}
 
   return {
     name: 'vue-note',
@@ -25,10 +25,10 @@ export function VueNote(): PluginOption {
         query,
         ssr,
         transformOption as TransformOption,
-        lastTransformCache,
+        transformCache[filename],
       )
       if (cache)
-        lastTransformCache = cache
+        transformCache[filename] = cache
       return result
     },
     configureServer(server) {
