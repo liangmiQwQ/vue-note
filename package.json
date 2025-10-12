@@ -2,7 +2,7 @@
   "name": "vue-note-repo",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.18.1",
+  "packageManager": "pnpm@10.18.2",
   "sideEffects": false,
   "scripts": {
     "build": "tsdown",
