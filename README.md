@@ -1,5 +1,9 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/liangmiQwQ/vue-note/main/packages/docs/src/public/favicon.svg" style="width:100px;" />
+<picture>
+  <source srcset="https://raw.githubusercontent.com/liangmiQwQ/vue-note/main/packages/docs/src/public/code-dark.svg" media="(prefers-color-scheme: dark)">
+  <source srcset="https://raw.githubusercontent.com/liangmiQwQ/vue-note/main/packages/docs/src/public/code-light.svg" media="(prefers-color-scheme: light)">
+  <img src="https://raw.githubusercontent.com/liangmiQwQ/vue-note/main/packages/docs/src/public/code-light.svg" />
+</picture>
 </p>
 
 # Vue Note
