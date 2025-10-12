@@ -74,7 +74,6 @@ export default (() => {
 			return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString(_unref(message)), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
 		};
 	} });
-	_component.render = __VUE_HMR_RENDER_FUNCTIONS__["8ae9ae3e"].render;
 	return _component;
 })();
 ",
@@ -103,7 +102,6 @@ export default (() => {
 			return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString(_unref(message)), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
 		};
 	} });
-	_component.render = __VUE_HMR_RENDER_FUNCTIONS__["8ae9ae3e"].render;
 	return _component;
 })();
 ",

@@ -45,7 +45,7 @@ export function resolve(program: Program, compiledComponents: CompiledComponent[
           }).visit(parseSync('foo.ts', component.code.template).program)
         }
 
-        const result = parseComponent(script!, hmrCache ? getComponentHmrCode(component.uniqueId) : [], component.uniqueId)
+        const result = parseComponent(script!, hmrCache ? getComponentHmrCode(component.uniqueId) : [], hmrCache && component.uniqueId)
         this.replace(result)
 
         index++
