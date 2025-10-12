@@ -4,10 +4,11 @@ layout: home
 
 hero:
   name: "Vue Note"
-  text: "Write Vue template in code comment?"
-  tagline: A easier and more flexible way to write Vue
+  text: "Write Vue with comment?"
+  tagline: A more flexible way to write Vue
   image:
-    src: /favicon.svg
+    light: /code-light.svg
+    dark: /code-dark.svg
     alt: Vue Note
   actions:
     - theme: brand
