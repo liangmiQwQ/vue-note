@@ -53,7 +53,7 @@ describe('development', () => {
     const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
     const second = await transform(testScript.replace('Good Morning', 'Good Afternoon'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
-    expect(second.result?.code).toContain('const __scriptChanged = true;')
+    expect(second.result?.code).toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
     expect(second.result?.code).not.toContain('changed: true,')
   })
 
@@ -61,7 +61,7 @@ describe('development', () => {
     const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
     const second = await transform(testScript.replace('Hello World', 'Hello Vue Note'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
-    expect(second.result?.code).not.toContain('const __scriptChanged = true;')
+    expect(second.result?.code).not.toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
     expect(second.result?.code).toContain('changed: true,')
   })
 })

@@ -115,15 +115,15 @@ typeof __VUE_HMR_RUNTIME__ !== "undefined" && __VUE_HMR_RUNTIME__.createRecord(_
 }
 
 export function wrapperWithHmr(originalCode: string, cache: [CacheHash | undefined, CacheHash]): string {
-  const __scriptChanged = !!(cache[0] && cache[0]?.ast !== cache[1].ast)
+  const __VUE_HMR_SCRIPT_CHANGED__ = !!(cache[0] && cache[0]?.ast !== cache[1].ast)
 
   return `
 ${originalCode}
-export const __scriptChanged = ${__scriptChanged};
+export const __VUE_HMR_SCRIPT_CHANGED__ = ${__VUE_HMR_SCRIPT_CHANGED__};
 if(import.meta.hot){
   import.meta.hot.accept(async (mod)=>{
     if(!mod) return;
-    if(mod.__scriptChanged) {
+    if(mod.__VUE_HMR_SCRIPT_CHANGED__) {
       return window.location.reload();
     }
     Object.keys(mod.__VUE_HMR_RENDER_FUNCTIONS__).forEach((id) => {
