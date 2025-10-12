@@ -2,7 +2,7 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { ref } from 'vue'
 import { defineCommentComponent, defineTemplate } from 'vue-note'
-import './style.css'
+import '../style.css'
 
 const AppHome = defineCommentComponent(() => {
   const props = defineProps<{
@@ -43,7 +43,6 @@ export default defineCommentComponent(() => {
   defineTemplate(/* @template
     <div> {{ message }} </div>
     <AppHome msg="Hello World! " />
-    <DIYComponent :buttonName @click='handleButtonName' />
     <Counter />
   */)
 })

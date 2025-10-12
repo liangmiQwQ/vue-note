@@ -1,35 +1,137 @@
+import type { ExportNamedDeclaration, Function } from 'oxc-parser'
+
 export interface CacheHash {
   ast: string
   template: Map<string, string>
 }
 
-export function getComponentHmrCode(uniqueId: string, cache: [CacheHash | undefined, CacheHash]): string {
-  // const range = { start: 0, end: 0 }
-  const _templateChanged = cache[1].template.get(uniqueId) !== cache[0]?.template.get(uniqueId)
-  const _scriptChanged = cache[0]?.ast !== cache[1].ast
+export function getRenderFunctionsObject(renderFunctionsMap: Map<string, Function>, cache: [CacheHash | undefined, CacheHash]): ExportNamedDeclaration {
+  const range = { start: 0, end: 0 }
+  return {
+    type: 'ExportNamedDeclaration',
+    ...range,
+    declaration: {
+      type: 'VariableDeclaration',
+      kind: 'const',
+      ...range,
+      declarations: [
+        {
+          type: 'VariableDeclarator',
+          ...range,
+          id: {
+            type: 'Identifier',
+            ...range,
+            decorators: [],
+            name: '__VUE_HMR_RENDER_FUNCTIONS__',
+            optional: false,
+            typeAnnotation: null,
+          },
+          init: {
+            type: 'ObjectExpression',
+            ...range,
+            properties: Array.from(renderFunctionsMap).map(([key, func]) => {
+              const _templateChanged = !!(cache[0] && cache[0]?.template.get(key) !== cache[1].template.get(key))
 
-  // return ''
+              return {
+                type: 'Property',
+                ...range,
+                kind: 'init',
+                key: {
+                  type: 'Literal',
+                  ...range,
+                  value: `${key}`,
+                  raw: `'${key}'`,
+                },
+                value: {
+                  type: 'ObjectExpression',
+                  ...range,
+                  properties: [
+                    {
+                      type: 'Property',
+                      ...range,
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        ...range,
+                        decorators: [],
+                        name: 'changed',
+                        optional: false,
+                        typeAnnotation: null,
+                      },
+                      value: {
+                        type: 'Literal',
+                        ...range,
+                        value: _templateChanged,
+                        raw: `${_templateChanged}`,
+                      },
+                      method: false,
+                      shorthand: false,
+                      computed: false,
+                      optional: false,
+                    },
+                    {
+                      type: 'Property',
+                      ...range,
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        ...range,
+                        decorators: [],
+                        name: 'render',
+                        optional: false,
+                        typeAnnotation: null,
+                      },
+                      value: { ...func, type: 'FunctionExpression' },
+                      method: false,
+                      shorthand: false,
+                      computed: false,
+                      optional: false,
+                    },
+                  ],
+
+                },
+                method: false,
+                shorthand: false,
+                computed: false,
+                optional: false,
+              }
+            }),
+          },
+        },
+      ],
+    },
+    specifiers: [],
+    source: null,
+    exportKind: 'value',
+    attributes: [],
+  }
+}
+
+export function getComponentHmrCode(uniqueId: string): string {
   return `
 _component.__hmrId = '${uniqueId}';
-_component._templateChanged = ${_templateChanged};
-_component._scriptChanged = ${_scriptChanged};
 typeof __VUE_HMR_RUNTIME__ !== "undefined" && __VUE_HMR_RUNTIME__.createRecord(_component.__hmrId, _component);
-__componentsMap.set(_component.__hmrId, _component)
-if (import.meta.hot) {
-  import.meta.hot.accept((mod) => {
-    if(!mod) { 
-      return
-    }
-    const __component = mod.__componentsMap.get(_component.__hmrId)
-    if(!__component) { 
-      return
-    }
-    if (__component._scriptChanged) {
-      window.location.reload();
-    } else if(__component._templateChanged) {
-      __VUE_HMR_RUNTIME__.rerender(__component.__hmrId, __component.render);
-    }
-  })
-}
 `
+}
+
+export function wrapperWithHmr(originalCode: string, cache: [CacheHash | undefined, CacheHash]): string {
+  const __VUE_HMR_SCRIPT_CHANGED__ = !!(cache[0] && cache[0]?.ast !== cache[1].ast)
+
+  return `
+${originalCode}
+export const __VUE_HMR_SCRIPT_CHANGED__ = ${__VUE_HMR_SCRIPT_CHANGED__};
+if(import.meta.hot){
+  import.meta.hot.accept(async (mod)=>{
+    if(!mod) return;
+    if(mod.__VUE_HMR_SCRIPT_CHANGED__) {
+      return window.location.reload();
+    }
+    Object.keys(mod.__VUE_HMR_RENDER_FUNCTIONS__).forEach((id) => {
+      const component = mod.__VUE_HMR_RENDER_FUNCTIONS__[id];
+      if(component && component.changed) {
+        __VUE_HMR_RUNTIME__.rerender(id, component.render);
+      }
+    });
+  })
+}`
 }

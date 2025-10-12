@@ -1,7 +1,7 @@
 import type { Directive, Expression, Statement } from 'oxc-parser'
 import { parseSync } from 'oxc-parser'
 
-export function wrapperComponent(definention: Expression, injectedCode: (Directive | Statement)[] | string, template?: Statement): Expression {
+export function wrapperComponent(definention: Expression, injectedCode: (Directive | Statement)[] | string, injectTemplate: string | false): Expression {
   const range = { start: 0, end: 0 }
 
   let inject: (Directive | Statement)[]
@@ -51,7 +51,7 @@ export function wrapperComponent(definention: Expression, injectedCode: (Directi
               kind: 'const',
               declare: false,
             },
-            ...getTemplatInject(template, range),
+            ...getTemplatInject(injectTemplate, range),
             ...inject,
             {
               type: 'ReturnStatement',
@@ -79,10 +79,9 @@ export function wrapperComponent(definention: Expression, injectedCode: (Directi
   }
 }
 
-function getTemplatInject(template: Statement | undefined, range = { start: 0, end: 0 }): Statement[] {
-  return (template
+function getTemplatInject(injectTemplate: string | false, range = { start: 0, end: 0 }): Statement[] {
+  return (injectTemplate
     ? [
-        template,
         {
           type: 'ExpressionStatement',
           ...range,
@@ -113,12 +112,38 @@ function getTemplatInject(template: Statement | undefined, range = { start: 0, e
               computed: false,
             },
             right: {
-              type: 'Identifier',
+              type: 'MemberExpression',
               ...range,
-              decorators: [],
-              name: 'render',
+              object: {
+                type: 'MemberExpression',
+                ...range,
+                object: {
+                  type: 'Identifier',
+                  ...range,
+                  decorators: [],
+                  name: '__VUE_HMR_RENDER_FUNCTIONS__',
+                  optional: false,
+                  typeAnnotation: null,
+                },
+                property: {
+                  type: 'Literal',
+                  ...range,
+                  value: `${injectTemplate}`,
+                  raw: `'${injectTemplate}'`,
+                },
+                optional: false,
+                computed: true,
+              },
+              property: {
+                type: 'Identifier',
+                ...range,
+                decorators: [],
+                name: 'render',
+                optional: false,
+                typeAnnotation: null,
+              },
               optional: false,
-              typeAnnotation: null,
+              computed: false,
             },
           },
           directive: null,

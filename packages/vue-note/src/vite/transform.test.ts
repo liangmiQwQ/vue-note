@@ -53,15 +53,15 @@ describe('development', () => {
     const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
     const second = await transform(testScript.replace('Good Morning', 'Good Afternoon'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
-    expect(second.result?.code).toContain('_component._scriptChanged = true;')
-    expect(second.result?.code).toContain('_component._templateChanged = false;')
+    expect(second.result?.code).toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
+    expect(second.result?.code).not.toContain('changed: true,')
   })
 
   it('should detect template change and inject HMR code', async () => {
     const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
     const second = await transform(testScript.replace('Hello World', 'Hello Vue Note'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
-    expect(second.result?.code).toContain('_component._scriptChanged = false;')
-    expect(second.result?.code).toContain('_component._templateChanged = true;')
+    expect(second.result?.code).not.toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
+    expect(second.result?.code).toContain('changed: true,')
   })
 })
