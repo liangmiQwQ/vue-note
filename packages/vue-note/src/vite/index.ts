@@ -15,7 +15,7 @@ export function VueNote(): PluginOption {
       const ssr = opt?.ssr === true
       const { filename, query } = parseQuery(id)
 
-      if (!filename.endsWith('.ts'))
+      if (!filename.endsWith('.n.ts'))
         return
 
       const { result, cache } = await transform(
@@ -51,7 +51,7 @@ export function VueNote(): PluginOption {
               )
             : []
         ),
-        /\.ts$/,
+        /\.n\.ts$/,
       ]
 
       return config

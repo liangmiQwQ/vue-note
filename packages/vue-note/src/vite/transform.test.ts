@@ -36,31 +36,31 @@ export default defineCommentComponent(() => {
 
 describe('production', () => {
   it('should work in production', async () => {
-    expect(await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(true, false))).toMatchSnapshot()
+    expect(await transform(testScript, `test.n.ts`, createMockContext(), {}, false, createMockServer(true, false))).toMatchSnapshot()
   })
 
   it('should work with style imports', async () => {
-    expect(await transform(`import 'style.css'; \n ${testScript}`, `test.ts`, createMockContext(), {}, false, createMockServer(true, false))).toMatchSnapshot()
+    expect(await transform(`import 'style.css'; \n ${testScript}`, `test.n.ts`, createMockContext(), {}, false, createMockServer(true, false))).toMatchSnapshot()
   })
 })
 
 describe('development', () => {
   it('should work and inject HMR code', async () => {
-    expect(await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))).toMatchSnapshot()
+    expect(await transform(testScript, `test.n.ts`, createMockContext(), {}, false, createMockServer(false, true))).toMatchSnapshot()
   })
 
   it('should detect script change and inject HMR code', async () => {
-    const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
+    const first = await transform(testScript, `test.n.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
-    const second = await transform(testScript.replace('Good Morning', 'Good Afternoon'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
+    const second = await transform(testScript.replace('Good Morning', 'Good Afternoon'), `test.n.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
     expect(second.result?.code).toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
     expect(second.result?.code).not.toContain('changed: true,')
   })
 
   it('should detect template change and inject HMR code', async () => {
-    const first = await transform(testScript, `test.ts`, createMockContext(), {}, false, createMockServer(false, true))
+    const first = await transform(testScript, `test.n.ts`, createMockContext(), {}, false, createMockServer(false, true))
 
-    const second = await transform(testScript.replace('Hello World', 'Hello Vue Note'), `test.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
+    const second = await transform(testScript.replace('Hello World', 'Hello Vue Note'), `test.n.ts`, createMockContext(), {}, false, createMockServer(false, true), first.cache)
     expect(second.result?.code).not.toContain('const __VUE_HMR_SCRIPT_CHANGED__ = true;')
     expect(second.result?.code).toContain('changed: true,')
   })
