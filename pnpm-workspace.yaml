@@ -9,31 +9,31 @@ shellEmulator: true
 
 catalogs:
   build:
-    oxc-parser: ^0.94.0
+    oxc-parser: ^0.96.0
     oxc-walker: ^0.5.2
     recast: ^0.23.11
   cli:
-    '@antfu/eslint-config': ^5.4.1
-    '@antfu/ni': ^26.1.0
+    '@antfu/eslint-config': ^6.2.0
+    '@antfu/ni': ^27.0.1
     bumpp: ^10.3.1
-    eslint: ^9.37.0
-    lint-staged: ^16.2.4
+    eslint: ^9.39.0
+    lint-staged: ^16.2.6
     simple-git-hooks: ^2.13.1
-    taze: ^19.7.0
-    tsdown: ^0.15.6
+    taze: ^19.9.0
+    tsdown: ^0.15.12
     tsx: ^4.20.6
     typescript: ^5.9.3
   docs:
     '@iconify-json/carbon': ^1.2.14
-    unocss: ^66.5.3
+    unocss: ^66.5.4
     vitepress: ^1.6.4
   testing:
     tinyexec: ^1.0.1
-    vitest: ^3.2.4
+    vitest: ^4.0.6
     vitest-package-exports: ^0.1.1
     yaml: ^2.8.1
   types:
-    '@types/node': ^24.7.2
+    '@types/node': ^24.9.2
   vite:
     '@vitejs/plugin-vue': ^6.0.1
     vite: npm:rolldown-vite@latest
