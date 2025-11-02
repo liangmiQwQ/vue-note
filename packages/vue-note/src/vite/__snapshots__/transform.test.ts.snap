@@ -5,14 +5,14 @@ exports[`development > should work and inject HMR code 1`] = `
   "cache": {
     "ast": "da50a3ae9b19c971f6be6113f209f39a",
     "template": Map {
-      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+      "8a4be66b" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
     },
   },
   "result": {
     "code": "import { ref } from "vue";
 import { defineComponent as _defineComponent } from "vue";
 import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue";
-export const __VUE_HMR_RENDER_FUNCTIONS__ = { "8ae9ae3e": {
+export const __VUE_HMR_RENDER_FUNCTIONS__ = { "8a4be66b": {
 	changed: false,
 	render: function render(_ctx, _cache, $props, $setup, $data, $options) {
 		return _openBlock(), _createElementBlock(_Fragment, null, [_createElementVNode("div", null, _toDisplayString($setup.message), 1), _cache[0] || (_cache[0] = _createElementVNode("div", null, " Hello World ", -1))], 64);
@@ -29,8 +29,8 @@ export default (() => {
 		});
 		return __returned__;
 	} });
-	_component.render = __VUE_HMR_RENDER_FUNCTIONS__["8ae9ae3e"].render;
-	_component.__hmrId = "8ae9ae3e";
+	_component.render = __VUE_HMR_RENDER_FUNCTIONS__["8a4be66b"].render;
+	_component.__hmrId = "8a4be66b";
 	typeof __VUE_HMR_RUNTIME__ !== "undefined" && __VUE_HMR_RUNTIME__.createRecord(_component.__hmrId, _component);
 	return _component;
 })();
@@ -60,7 +60,7 @@ exports[`production > should work in production 1`] = `
   "cache": {
     "ast": "da50a3ae9b19c971f6be6113f209f39a",
     "template": Map {
-      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+      "8a4be66b" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
     },
   },
   "result": {
@@ -87,7 +87,7 @@ exports[`production > should work with style imports 1`] = `
   "cache": {
     "ast": "643891df79c91e6f1fc896851540d168",
     "template": Map {
-      "8ae9ae3e" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
+      "8a4be66b" => "95d6a8b04b8e4d3b8ea3e00064f89f36",
     },
   },
   "result": {
