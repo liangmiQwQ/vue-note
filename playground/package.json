@@ -2,9 +2,11 @@
   "name": "vue-note-playground",
   "private": true,
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
+    "@vitejs/devtools": "catalog:vite",
     "@vitejs/plugin-vue": "catalog:vite",
     "vite": "catalog:vite",
     "vite-plugin-inspect": "catalog:vite",
