@@ -20,7 +20,7 @@ catalogs:
     lint-staged: ^16.2.6
     simple-git-hooks: ^2.13.1
     taze: ^19.9.0
-    tsdown: ^0.15.12
+    tsdown: ^0.16.1
     tsx: ^4.20.6
     typescript: ^5.9.3
   docs:
