@@ -35,7 +35,7 @@ catalogs:
   types:
     '@types/node': ^24.10.0
   vite:
-    '@vitejs/devtools': ^0.0.0-alpha.8
+    '@vitejs/devtools': latest
     '@vitejs/plugin-vue': ^6.0.1
     vite: npm:rolldown-vite@latest
     # vite: ^7.1.8
