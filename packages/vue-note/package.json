@@ -1,7 +1,7 @@
 {
   "name": "vue-note",
   "type": "module",
-  "version": "0.0.0-alpha.11",
+  "version": "0.0.0-alpha.12",
   "description": "Another style to write Vue. It's light, easy and fast!",
   "author": "Liang Mi",
   "license": "MIT",
