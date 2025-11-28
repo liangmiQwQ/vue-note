@@ -15,12 +15,12 @@ catalogs:
   cli:
     '@antfu/eslint-config': ^6.2.0
     '@antfu/ni': ^27.0.1
-    bumpp: ^10.3.1
+    bumpp: ^10.3.2
     eslint: ^9.39.1
     lint-staged: ^16.2.7
     simple-git-hooks: ^2.13.1
-    taze: ^19.9.0
-    tsdown: ^0.16.6
+    taze: ^19.9.2
+    tsdown: ^0.16.8
     tsx: ^4.20.6
     typescript: ^5.9.3
   docs:
@@ -29,7 +29,7 @@ catalogs:
     vitepress: ^1.6.4
   testing:
     tinyexec: ^1.0.2
-    vitest: ^4.0.13
+    vitest: ^4.0.14
     vitest-package-exports: ^0.1.1
     yaml: ^2.8.1
   types:
@@ -41,7 +41,7 @@ catalogs:
     # vite: ^7.1.8
     vite-plugin-inspect: ^11.3.3
   vue:
-    vue: ^3.5.24
+    vue: ^3.5.25
 
 onlyBuiltDependencies:
   - esbuild
