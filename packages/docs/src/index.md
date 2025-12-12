@@ -22,7 +22,7 @@ features:
   - icon: <span class="i-carbon:horizontal-view"></span>
     title: Flexible Components
     details: Declare your component anywhere, even in another component
-    link: /advenced/flexibility
+    link: /advanced/flexibility
     linkText: Flexibility
 
   - icon: <span class="i-carbon:code"></span>

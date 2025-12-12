@@ -81,4 +81,4 @@ export default defineCommentComponent(() => {
 })
 ```
 
-Learn more about our **flexibility approach** in [Flexibility](/advenced/flexibility) and our **design philosophy** in [Design Philosophy](/extra/design-philosophy).
+Learn more about our **flexibility approach** in [Flexibility](/advanced/flexibility) and our **design philosophy** in [Design Philosophy](/extra/design-philosophy).

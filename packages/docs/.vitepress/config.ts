@@ -7,10 +7,10 @@ const SidebarNav = [
     { text: 'Quick Start', link: '/guide/quick-start' },
     { text: 'Usage', link: '/guide/usage' },
   ] },
-  { text: 'Advenced', items: [
-    { text: 'Linter & Formatter', link: '/advenced/linter-formatter' },
-    { text: 'TypeScript', link: '/advenced/typescript' },
-    { text: 'Flexibility', link: '/advenced/flexibility' },
+  { text: 'Advanced', items: [
+    { text: 'Linter & Formatter', link: '/advanced/linter-formatter' },
+    { text: 'TypeScript', link: '/advanced/typescript' },
+    { text: 'Flexibility', link: '/advanced/flexibility' },
   ] },
   { text: 'Extra Topic', items: [
     { text: 'Design Philosophy', link: '/extra/design-philosophy' },
