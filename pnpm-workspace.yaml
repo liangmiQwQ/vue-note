@@ -1,11 +1,15 @@
+catalogMode: prefer
+
+ignoreWorkspaceRootCheck: true
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - playground
   - docs
   - packages/*
   - examples/*
-
-ignoreWorkspaceRootCheck: true
-shellEmulator: true
 
 catalogs:
   build:
@@ -13,30 +17,30 @@ catalogs:
     oxc-walker: ^0.5.2
     recast: ^0.23.11
   cli:
-    '@antfu/eslint-config': ^6.2.0
+    '@antfu/eslint-config': ^6.7.1
     '@antfu/ni': ^27.0.1
     bumpp: ^10.3.2
-    eslint: ^9.39.1
+    eslint: ^9.39.2
     lint-staged: ^16.2.7
     simple-git-hooks: ^2.13.1
     taze: ^19.9.2
     tsdown: ^0.16.8
-    tsx: ^4.20.6
+    tsx: ^4.21.0
     typescript: ^5.9.3
   docs:
-    '@iconify-json/carbon': ^1.2.14
-    unocss: ^66.5.9
+    '@iconify-json/carbon': ^1.2.15
+    unocss: ^66.5.10
     vitepress: ^1.6.4
   testing:
     tinyexec: ^1.0.2
-    vitest: ^4.0.14
+    vitest: ^4.0.16
     vitest-package-exports: ^0.1.1
-    yaml: ^2.8.1
+    yaml: ^2.8.2
   types:
-    '@types/node': ^24.10.1
+    '@types/node': ^24.10.4
   vite:
     '@vitejs/devtools': latest
-    '@vitejs/plugin-vue': ^6.0.2
+    '@vitejs/plugin-vue': ^6.0.3
     vite: npm:rolldown-vite@latest
     # vite: ^7.1.8
     vite-plugin-inspect: ^11.3.3
