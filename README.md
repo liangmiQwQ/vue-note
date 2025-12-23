@@ -8,7 +8,7 @@
 
 # Vue Note
 
-State: **🚧 Work in progress**
+State: **Compiler Usable with Vite**
 
 vue-note is another style to write Vue. It's light, easy and fast!
 
