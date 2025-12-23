@@ -14,7 +14,7 @@ vue-note is another style to write Vue. It's light, easy and fast!
 
 ## Getting Started
 
-Use the follwing command to install Vue Note exist project
+Use the following command to install Vue Note exist project
 
 ```
 npm install -D vue-note
